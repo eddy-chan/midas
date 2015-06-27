@@ -1,0 +1,165 @@
+# -- bainer hall front open area --
+# -- platform --
+polygon platform 250 120 999999 250 -30 eee9e9 -250 -30 eee9e9 -250 120 999999
+polygon ground 360 360 003300 360 -360 006600 -360 -360 006600 -360 360 003300
+create ground ground ZT -24
+# -- top building --
+polygon topbuilding 180 250 999999 180 -5 999999 -180 -5 999999 -180 250 999999
+extrude topbuilding topbuilding 100
+create topbuilding topbuilding ZT 70
+polygon topbuilding2 180 250 999999 180 90 999999 -180 90 999999 -180 250 999999
+extrude topbuilding2 topbuilding2 10
+create topbuilding2 topbuilding2 ZT 60 
+# -- stair --
+polygon stairstepV 45 1.5 eee9e9 45 -1.5 cdc9c9 -45 -1.5 cdc9c9 -45 1.5 eee9e9
+create stairstepV stairstepV XD 90
+polygon stairstepH 45 2.5 cdc9c9 45 -2.5 eee9e9 -45 -2.5 eee9e9 -45 2.5 cdc9c9
+create stairstepH stairstepH ZT -1.5 YT -2.5
+assemble stairstep stairstepV stairstepH
+create stairstep1 stairstep YT -5 ZT -3
+create stairstep2 stairstep1 YT -5 ZT -3
+create stairstep3 stairstep2 YT -5 ZT -3
+create stairstep4 stairstep3 YT -5 ZT -3
+create stairstep5 stairstep4 YT -5 ZT -3
+create stairstep6 stairstep5 YT -5 ZT -3
+create stairstep7 stairstep6 YT -5 ZT -3
+assemble stair stairstep stairstep1 stairstep2 stairstep3 stairstep4 stairstep5 stairstep6 stairstep7
+create stair stair ZT -1.5 YT -30
+# -- front gardens --
+polygon boxleft -15.5 22.5 faebd7 -15.5 -15.5 faebd7 -22.5 -15.5 faebd7 -22.5 22.5 faebd7
+create boxnorth boxleft ZD -90
+create boxright boxleft ZD -180
+create boxsouth boxleft ZD 90
+assemble squaregardenbox boxleft boxnorth boxright boxsouth
+extrude squaregardenbox squaregardenbox 28
+polygon squaredirt 15.5 15.5 8b7765 15.5 -15.5 8b7765 -15.5 -15.5 8b7765 -15.5 15.5 8b7765
+extrude squaredirt squaredirt 25
+assemble squaregardenbox1 squaregardenbox squaredirt
+polygon boxleft -40 22.5 faebd7 -40 -17.5 faebd7 -45 -17.5 faebd7 -45 22.5 faebd7
+polygon boxnorth 40 22.5 faebd7 40 17.5 faebd7 -40 17.5 faebd7 -40 22.5 faebd7
+create boxright boxleft XT 85
+create boxsouth boxnorth YT -35
+assemble longgardenbox boxleft boxnorth boxright boxsouth
+extrude longgardenbox longgardenbox 24
+polygon longdirt 40 17.5 8b7765 40 -12.5 8b7765 -40 -12.5 8b7765 -40 17.5 8b7765
+extrude longdirt longdirt 21
+assemble longgardenbox1 longgardenbox longdirt
+create longgardenbox1 longgardenbox1 XT 67.5
+create squaregardenbox2 squaregardenbox1 XT 135
+assemble gardenright squaregardenbox1 longgardenbox1 squaregardenbox2
+create gardenright gardenright ZT -24 YT -52.5 XT 67.5
+create gardenleft gardenright XT -270
+# -- pillars --
+polygon pillarsouth 5 30 eee9e9 5 -30 999999 -5 -30 999999 -5 30 eee9e9
+create pillarsouth pillarsouth ZT 5
+create pillarleft pillarsouth YD -90
+create pillarright pillarsouth YD 90
+create pillarnorth pillarsouth YD 180
+assemble pillar pillarsouth pillarleft pillarright pillarnorth
+create pillar pillar XD 90
+create pillar pillar ZT 30
+create pillarfarright pillar XT 175
+create pillarcenterright pillar XT 105
+create pillarnearright pillar XT 40
+assemble pillarsright pillarfarright pillarcenterright pillarnearright
+create pillarsleft pillarsright ZD 180
+polygon pillartopfront 180 5 eee9e9 180 -5 eee9e9 -180 -5 eee9e9 -180 5 eee9e9
+extrude pillartopfront pillartopfront 10
+polygon pillartopleft 5 100 eee9e9 5 5 eee9e9 -5 5 eee9e9 -5 100 eee9e9
+extrude pillartopleft pillartopleft 10
+create pillartopleft pillartopleft XT -175
+create pillartopright pillartopleft XT 350
+assemble pillartop pillartopfront pillartopleft pillartopright
+create pillartop pillartop ZT 60
+assemble pillars pillarsleft pillarsright pillartop
+# -- window --
+polygon frontwindowleft 20 30 000000 20 -30 333333 -20 -30 333333 -20 30 000000
+extrude frontwindowleft frontwindowleft 2
+create frontwindowright frontwindowleft XT 140
+polygon frontwindowmiddle 10 6 111111 10 -30 333333 -10 -30 333333 -10 6 111111
+extrude frontwindowmiddle frontwindowmiddle 2
+create frontwindowmiddle frontwindowmiddle XT 70
+polygon frontwindowtop 50 12 000000 50 -12 111111 -50 -12 111111 -50 12 000000
+extrude frontwindowtop frontwindowtop 2
+create frontwindowtop frontwindowtop YT 18 XT 70
+polygon frontwindowsideleft 20 30 000000 20 -30 333333 -20 -30 333333 -20 30 000000
+extrude frontwindowsideleft frontwindowsideleft 2
+create frontwindowsideleft frontwindowsideleft YD 90
+create frontwindowsideleft frontwindowsideleft XT -20 ZT -20
+create frontwindowsideright frontwindowsideleft XT 178
+assemble frontwindow frontwindowleft frontwindowright frontwindowmiddle frontwindowtop frontwindowsideleft frontwindowsideright
+polygon leftwindowlong 22.5 6 111111 22.5 -30 333333 -22.5 -30 333333 -22.5 6 111111
+extrude leftwindowlong leftwindowlong 2
+create leftwindowlong leftwindowlong ZT -40 XT -42.5
+polygon leftwindowshort 2.5 6 111111 2.5 -30 333333 -2.5 -30 333333 -2.5 6 111111
+extrude leftwindowshort leftwindowshort 2
+create leftwindowshort leftwindowshort ZT -40 XT -107.5
+polygon leftwindowtop 45 12 000000 45 -12 111111 -45 -12 111111 -45 12 000000
+extrude leftwindowtop leftwindowtop 2
+create leftwindowtop leftwindowtop ZT -40 XT -65 YT 18
+assemble leftwindow leftwindowlong leftwindowshort leftwindowtop
+create rightwindowlong leftwindowlong XT 225
+create rightwindowshort leftwindowshort XT 355
+create rightwindowtop leftwindowtop XT 270
+assemble rightwindow rightwindowlong rightwindowshort rightwindowtop
+assemble window frontwindow leftwindow rightwindow
+#create window window XD 90
+#create window window XT -65 ZT 30 YT 60
+# -- door frame --
+polygon doorframemiddle 1 6 654321 1 -30 654321 -1 -30 654321 -1 6 654321
+extrude doorframemiddle doorframemiddle 2
+create doorframeleft doorframemiddle XT -19
+create doorframeright doorframemiddle XT 19
+polygon doorframetop 20 1 654321 20 -1 654321 -20 -1 654321 -20 1 654321
+extrude doorframetop doorframetop 2 
+create doorframetop doorframetop YT 5
+assemble doorframe doorframeleft doorframemiddle doorframeright doorframetop
+#create doorframe doorframe XT 40
+# -- door window pane --
+polygon leftdoorpane 9 4 111111 9 -30 000033 -8 -30 111111 -8 4 111111
+extrude leftdoorpane leftdoorpane 1
+create leftdoorpane leftdoorpane XT -10
+polygon rightdoorpane 9 4 111111 9 -30 111111 -8 -30 000033 -8 4 111111
+extrude rightdoorpane rightdoorpane 1
+create rightdoorpane rightdoorpane XT 9
+# -- door handle --
+polygon doorhandleplate 2 3 654321 2 -3 654321 -2 -3 654321 -2 3 654321
+extrude doorhandleplate doorhandleplate .5
+polygon doorhandlebar .25 2.5 321414 .25 -2.5 321414 -.25 -2.5 321414 -.25 2.5 321414
+extrude doorhandlebar doorhandlebar .5
+create doorhandlebar doorhandlebar ZT 1.5
+polygon doorhandlebarsupport .25 .25 321414 .25 -.25 321414 -.25 -.25 321414 -.25 .25 321414
+extrude doorhandlebarsupport doorhandlebarsupport 1
+create doorhandlebarsupporttop doorhandlebarsupport YT 2 ZT .5
+create doorhandlebarsupportbottom doorhandlebarsupport YT -2 ZT .5
+assemble doorhandlebarwithsupport doorhandlebarsupporttop doorhandlebarsupportbottom doorhandlebar
+create doorhandlebarwithsupportleft doorhandlebarwithsupport XT 1.5
+create doorhandlebarwithsupportright doorhandlebarwithsupport XT -1.5
+assemble doorhandleleft doorhandleplate doorhandlebarwithsupportleft
+assemble doorhandleright doorhandleplate doorhandlebarwithsupportright
+create doorhandleleft doorhandleleft YT -13 XT -4 ZT 1
+create doorhandleright doorhandleright YT -13 XT 4 ZT 1
+# -- doors --
+assemble leftdoor leftdoorpane doorhandleleft
+assemble rightdoor rightdoorpane doorhandleright
+assemble door doorframe leftdoor rightdoor
+create openleftdoor leftdoor YD -120
+create openleftdoor openleftdoor ZT 17 XT -26
+create openrightdoor rightdoor YD 120
+create openrightdoor openrightdoor ZT 17 XT 26
+assemble opendoor doorframe openleftdoor openrightdoor
+assemble partialopendoor doorframe leftdoor openrightdoor
+# -- window doors --
+create frontdoorleft door XT 40
+create frontdoorright opendoor XT 100
+create leftsidedoor door ZT -40 XT -85
+create rightsidedoor partialopendoor ZT -40 XT 225
+assemble windowdoors window frontdoorleft frontdoorright leftsidedoor rightsidedoor
+create windowdoors windowdoors XD 90
+create windowdoors windowdoors XT -65 ZT 30 YT 60
+# -- scene --
+assemble scene platform ground topbuilding topbuilding2 stair gardenright gardenleft pillars windowdoors
+#assemble scene windowdoors
+create scene scene XD -90
+create scene scene YT -20 ZT -30
+view scene 0 0 1 0 1 0 0 0 0 1 1 100

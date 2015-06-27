@@ -1,0 +1,96 @@
+#-- create the seat --
+polygon seatboard 25 1 8b4513 25 -1 deb887 -25 -1 deb887 -25 1 8b4513
+extrude seatboard seatboard 1
+create seatboard1 seatboard YT 3
+create seatboard2 seatboard YT 6
+create seatboard3 seatboard ZD 180
+create seatboard3 seatboard3 YT -3
+create seatboard4 seatboard ZD 180
+create seatboard4 seatboard4 YT -6
+assemble seat seatboard seatboard1 seatboard2 seatboard3 seatboard4
+#-- create the back frame --
+polygon backframetop 1.5 25 8b4513 1.5 -25 8b4513 -1.5 -25 8b4513 -1.5 25 8b4513
+extrude backframetop backframetop 1.5
+create backframetop backframetop XT 6
+create backframebottom backframetop XT -12
+polygon backframepeg 5 1 cd853f 5 -1 cd853f -5 -1 cd853f -5 1 cd853f
+create backframepeg backframepeg
+create backframepeg1 backframepeg YT 4
+create backframepeg2 backframepeg YT 4
+create backframepeg3 backframepeg2 YT 4
+create backframepeg4 backframepeg3 YT 4
+create backframepeg5 backframepeg4 YT 4
+create backframepeg6 backframepeg5 YT 4
+assemble backframepegsleft backframepeg1 backframepeg2 backframepeg3 backframepeg4 backframepeg5 backframepeg6
+create backframepegsright backframepegsleft YT -24
+assemble backframepegs backframepegsleft backframepegsright backframepeg
+extrude backframepegs backframepegs 1
+assemble backframe backframetop backframebottom backframepegs
+create backframe backframe ZT 7 ZD 90 YD -80
+create backframe backframe ZT 6 YT 16
+#-- create the side supports --
+polygon sidesupport1 0 7.1 8b4513 .6 6.9 8b4513 1 6 8b4513 1 -8 8b4513 -1 -8 8b4513 -1 6 8b4513 -.6 6.9 8b4513
+create sidesupport1 sidesupport1 ZD 10
+polygon sidesupport2 1 -7 8b4513 1 -20 8b4513 -1 -20 8b4513 -1 -7 8b4513
+create sidesupport2 sidesupport2 XT 1.5
+polygon sidesupport3 1 -3 8b4513 1 -20 8b4513 -1 -20 8b4513 -1 -3 8b4513
+create sidesupport3 sidesupport3 XT 16
+polygon sidesupport4 1 -7 8b4513 16 -7 8b4513 16 -10 8b4513 1 -10 8b4513
+create sidesupport5 sidesupport4 YT -7
+assemble sidesupport6 sidesupport1 sidesupport2 sidesupport3 sidesupport4 sidesupport5
+extrude sidesupport6 sidesupport6 2
+polygon armrest 19 0 8b4513 18.4 -2 8b4513 -.5 -2 8b4513 -.5 1.5 8b4513 18.4 1.5 8b4513
+#polygon armrest -1 2 8b4513 19 2 8b4513 19 -2 8b4513 -1 -2 8b4513
+create armrest armrest XD -90
+create armrest armrest YT -3 ZT .75
+extrude armrest armrest 1.5
+assemble sidesupportleft sidesupport6 armrest
+create sidesupportleft sidesupportleft ZD -90 XD 90
+create sidesupportleft sidesupportleft XT -24 YT 9 ZT 9
+create sidesupportright sidesupportleft XT 50
+assemble sidesupports sidesupportleft sidesupportright
+#-- assemble the bench --
+assemble bench seat backframe sidesupports
+#create bench1 bench ZD 180 YT 60
+assemble benches bench
+#-- create ashtray --
+polygon topcap 4 4 48d1cc 4 5 48d1cc 5.5 4.5 48d1cc 6 3 48d1cc 6 0 48d1cc 5 0 48d1cc 5 3 48d1cc 4.5 3.5 48d1cc
+volume topcap topcap 0 0 0 0 1 0 360 30
+polygon bottomcap 6 1 008080 7 0 008080 5 0 008080 5 1 008080
+volume bottomcap bottomcap 0 0 0 0 1 0 360 30
+create bottomcap bottomcap YT -21
+polygon cagepeg 1 .5 00ced1 1 -20 008b8b -1 -20 008b8b -1 .5 00ced1
+extrude cagepeg cagepeg .5
+create cagepeg cagepeg ZT 5.2
+create cagepeg1 cagepeg YD 30
+create cagepeg2 cagepeg1 YD 30
+create cagepeg3 cagepeg2 YD 30
+create cagepeg4 cagepeg3 YD 30
+create cagepeg5 cagepeg4 YD 30
+assemble cagehalf cagepeg cagepeg1 cagepeg2 cagepeg3 cagepeg4 cagepeg5
+create cagehalf1 cagehalf YD 180
+assemble cage cagehalf cagehalf1
+polygon ringbrace 5.5 1 008080 5.5 -1 008080 5 -1 008080 5 1 008080
+volume ringbrace ringbrace 0 0 0 0 1 0 360 30
+create ringbrace ringbrace YT -4
+create ringbrace1 ringbrace YT -8
+polygon ash 4 4.5 2f4f4f 4 1.5 000000 0 1.5 000000
+volume ash ash 0 0 0 0 1 0 360 30
+assemble ashtray topcap bottomcap cage ringbrace ringbrace1 ash
+create ashtray ashtray XD 90
+create ashtray ashtray ZT 10 XT -36
+#-- assemble the scene --
+polygon floor 500 500 003300 500 -500 66ff66 -500 -500 66ff66 -500 500 003300
+create floor floor ZT -11
+polygon wall 100 500 cccccc 100 -500 cccccc -100 -500 333333 -100 500 333333
+create wall wall YD -90
+create wall1 wall XT 400
+create wall2 wall XT -400
+create wall wall ZD -90
+create wall3 wall YT 200
+create wall4 wall YT -400
+assemble scene bench ashtray floor wall1 wall2 wall3 wall4
+create scene scene XD -90
+create scene scene YT -20
+view scene 0 0 1 0 1 0 0 0 0 1 10 90
+quit

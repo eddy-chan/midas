@@ -1,0 +1,5 @@
+polygon cylinderbase 0 30 20 20 30 0 20 -20 0 -30 -20 -20 -30 0 -20 20
+extrude cylinderbase bigcylinder 50
+create skinnycylinder bigcylinder XS 0.5 YS 0.5 ZS 2 XT 90
+assemble cylinders bigcylinder skinnycylinder
+view cylinders 0 -1.2 1 0 1 0 0 0 0 0 1 30

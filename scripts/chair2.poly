@@ -1,0 +1,21 @@
+polygon seatbase 0 30 20 20 30 0 20 -20 0 -30 -20 -20 -30 0 -20 20
+extrude seatbase seat 10
+create cylinder seat XS 0.1 YS 0.1 ZS 4 ZT -7
+polygon square -10 10 10 10 10 -10 -10 -10
+extrude square cube 10
+create wheel seat XT 110 YT -105 ZT -5 XS 0.15 YS 0.15 ZS 0.6 XD 90
+create leg cube XS 2 YS 0.2 ZS 0.2 YD 35
+assemble legw leg wheel
+create leg1 legw XT 12 ZT -40
+create leg2 leg1 ZD 180
+create leg3 leg1 ZD 60
+create leg4 leg1 ZD 120
+create leg5 leg1 ZD -60
+create leg6 leg1 ZD -120
+assemble alllegs leg1 leg2 leg3 leg4 leg5 leg6
+create spinebase cube US 0.8 XS 2 ZS 0.2 YT 15
+create spinecol cube US 0.4 XS 4 ZS 0.5 ZD 90 YD 90 XT -10 ZT 140
+assemble spine spinebase spinecol
+create backsupport cube ZS 0.1  XS 2.2 XD -90 ZT 280 YT -35
+assemble chair seat cylinder alllegs spine backsupport
+view chair 1 -1 1 0 0 1 0 0 0 0 1 40

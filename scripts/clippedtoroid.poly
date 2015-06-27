@@ -1,0 +1,11 @@
+polygon floor -200 -200 000033 -200 200 9999ff 200 200 9999ff 200 -200 000033
+create floor floor XR 90 ZT 50
+polygon octgon 0 4 ff0000 3 3 00ff00 4 0 0000ff 3 -3 0 -4 00ffff -3 -3 ff00ff -4 0 ffff00 -3 3
+create octgon2 octgon US 2 YT 20 YR -45
+create octgon3 octgon YT 10 YR 45
+volume octgon2 toroid1 0 0 0 1 0 1 360 10
+volume octgon3 toroid2 0 0 0 -1 0 1 360 15
+clip toroid1 toroid1 0 15 15 0 -1 -1
+assemble toroids toroid1 toroid2
+assemble scene floor toroids
+view scene 0 0 1 0 1 0 0 0 0 30 1 100

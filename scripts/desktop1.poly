@@ -1,0 +1,50 @@
+polygon square -10 10 10 10 10 -10 -10 -10
+extrude square squareboard 5
+create desk squareboard XS 9 YS 6
+create book squareboard YS 1.5 XD 90 ZD 90
+create book1 book XT 5
+create book2 book1 XT 5
+assemble books book book1 book2
+create biggerbooks books US 1.1 ZT 1 XT 15
+create morebooks books XT 35
+assemble allbooks books biggerbooks morebooks
+polygon bookendtopbase -10 0 -10 10 -8 11 -5 12 0 13 5 12 8 11 10 10 10 0
+extrude bookendtopbase bookendtop 3
+create bookendtop1 bookendtop XD 90 ZD 90 YS 2 ZT -4 YT -7.5
+create bookendtop2 bookendtop1 XT 55
+create bookendbase squareboard XS 3 ZS 0.8 XT 8.2 ZT -24
+assemble bookendwithbooks allbooks bookendtop1 bookendtop2 bookendbase
+create bookendwithbooks1 bookendwithbooks YT 30 XT -60 ZT 25 US 1.2
+polygon octgon 0 4 3 3 4 0 3 -3 0 -4 -3 -3 -4 0 -3 3
+extrude octgon cylinder 80
+polygon triangle -2.1 0 2.1 0  0 -15
+create penciltip1 triangle XD 115 ZT 4.8 YT 3
+create penciltip2 penciltip1 ZD 45
+create penciltip3 penciltip2 ZD 45
+create penciltip4 penciltip3 ZD 45
+create penciltip5 penciltip4 ZD 45
+create penciltip6 penciltip5 ZD 45
+create penciltip7 penciltip6 ZD 45
+create penciltip8 penciltip7 ZD 45
+assemble penciltip penciltip1 penciltip2 penciltip3 penciltip4 penciltip5 penciltip6 penciltip7 penciltip8
+create penciltip1 penciltip XT -1
+assemble pencil penciltip1 cylinder
+create pencil1 pencil XD -90 US .4 YT -20
+create paper squareboard ZS 0.1 YS 1.8 XS 1.4 ZT 60 XT -20 YT -5
+create paper1 paper ZT 1
+create paper2 paper1 ZT 1
+create paper3 paper2 ZT 1
+assemble paperpad paper paper1 paper2 paper3
+extrude octgon lampbase 3
+create lampbase1 lampbase XS 3 YS 3
+create lampsupport squareboard XS .1 YS 2 ZS 0.3
+create lampsupport1 lampsupport XD 45 YT 25 ZT -3
+create lampsupport2 lampsupport1 XD 90 YT 25 ZT -35
+extrude octgon lampcone 10
+create biglampcone lampcone US 2 ZS 1.3 XD -45 ZT 10 YT -18
+create smalllampcone lampcone US 1.1 ZS 1.1 XD -45 ZT 32 YT -33
+assemble lamp lampbase1 lampsupport1 lampsupport2 biglampcone smalllampcone
+create lamp1 lamp ZT 8 XT 35 YT 25 ZD -25
+assemble desktop desk bookendwithbooks1 pencil1 paperpad lamp1
+create desktop1 desktop US 1
+view desktop1 0 -2 1 0 1 0 0 0 0 0 1 900

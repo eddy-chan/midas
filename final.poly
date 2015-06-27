@@ -1,0 +1,94 @@
+surface side1bottom side1_bottom.jpg 1 \
+ -65 10 0 -10 10 0 10 10 0 60 10 0 \
+ -55 5 0 -10 5 0 10 5 0 50 5 0 \
+ -55 -5 0 -10 -5 0 10 -5 0 50 -5 0 \
+ -55 -10 0 -10 -10 0 10 -10 0 50 -10 0
+surface side1middle side1_middle.jpg 1 \
+ -115 20 0 -45 20 0 55 20 0 125 20 0 \
+ -120 10 0 -40 10 0 50 10 0 125 10 0 \
+ -125 -10 0 -40 -10 0 50 -10 0 125 -10 0 \
+ -125 -20 0 -40 -20 0 50 -20 0 125 -20 0
+create side1middle side1middle YT 30
+surface side1top side1_top.jpg 1 \
+ -125 3 0 -60 3 0 60 3 0 125 3 0 \
+ -125 1 0 -60 1 0 60 1 0 125 1 0 \
+ -125 -1 0 -60 -1 0 60 -1 0 125 -1 0\
+ -125 -3 0 -60 -3 0 60 -3 0 125 -3 0
+create side1top side1top YT 53
+surface side1bottomfront side1_bottomfront.jpg 1 \
+ -19 10 0 -5 10 0 5 10 0 28 10 0 \
+ -19 5 0 -5 5 0 5 5 0 19 5 0 \
+ -19 -5 0 -5 -5 0 5 -5 0 19 -5 0\
+ -19 -10 0 -5 -10 0 5 -10 0 19 -10 0
+create side1bottomfront side1bottomfront XT -106
+surface side1bottomback side1_bottomback.jpg 1 \
+ -32 10 0 -5 10 0 5 10 0 22 10 0 \
+ -22 5 0 -5 5 0 5 5 0 22 5 0 \
+ -22 -5 0 -5 -5 0 5 -5 0 22 -5 0 \
+ -22 -10 0 -5 -10 0 5 -10 0 22 -10 0
+create side1bottomback side1bottomback XT 103
+assemble side1 side1bottom side1middle side1top \
+ side1bottomfront side1bottomback
+create side2 side1 ZT -60
+surface fronttop front_top.jpg 1 \
+ -30 23 0 -10 23 0 10 23 0 30 23 0 \
+ -30 13 0 -10 13 0 10 13 0 30 13 0 \
+ -30 20 -30 -10 20 -30 10 20 -30 30 20 -30\
+ -30 -15 0 -10 -15 0 10 -15 0 30 -15 0
+create fronttop fronttop YD -90
+create fronttop fronttop XT -125 YT 33 ZT -30
+surface frontbottom front_bottom.jpg 1 \
+ -30 25 -10 -10 25 -10 10 25 -10 30 25 -10\
+ -30 15 -5 -10 15 -5 10 15 -5 30 15 -5\
+ -30 -10 0 -10 -10 0 10 -10 0 30 -10 0 \
+ -30 -26 0 -10 -26 0 10 -26 0 30 -26 0
+create frontbottom frontbottom YD -90
+create frontbottom frontbottom XT -125 ZT -30 YT 25
+polygon bumper -31 4 333333 31 4 333333 31 -4 333333 -31 -4 333333
+extrude bumper bumper 6
+create bumper bumper YD -90
+create bumperfront bumper XT -122 ZT -30 YT -5
+assemble front fronttop frontbottom bumperfront
+surface back back.jpg 0 \
+ -30 33 0 -10 33 0 10 33 0 30 33 0\
+ -30 11 0 -10 11 0 10 11 0 30 11 0\
+ -30 -11 0 -10 -11 0 10 -11 0 30 -11 0 \
+ -30 -33 0 -10 -33 0 10 -33 0 30 -33 0
+create back back YD 90
+create back back ZT -30 YT 23 XT 125
+#create the wheels\
+surface tirehalf1 tire.jpg 2 \
+ -5 5 0  -5 10 0  5 10 0  5 5 0\
+ -5 4 5  -5 8 15  5 8 15  5 4 5\
+ -5 -4 5 -5 -8 15 5 -8 15 5 -4 5\
+ -5 -5 0 -5 -10 0 5 -10 0 5 -5 0
+create tirehalf2 tirehalf1 YD 180
+polygon wheelplate 4 4 ffffff 4 -4 ffffff 0 -4 ffffff 0 4 ffffff
+create wheelplate wheelplate XD 90
+volume wheelplate wheelplate 0 0 0 0 0 -1 360 30
+create wheelplate wheelplate YD 90
+assemble wheel tirehalf1 tirehalf2 wheelplate
+create wheel wheel YD 90 US 1.6
+create wheelfrontleft wheel XT -71 YT -5 ZT -2.5
+create wheelfrontright wheelfrontleft ZT -60
+assemble frontwheels wheelfrontleft wheelfrontright
+create backwheels frontwheels XT 137
+create rotatedwheel wheel YD 30
+create wheelfrontleft rotatedwheel XT -71 YT -5 ZT -2.5
+create wheelfrontright wheelfrontleft ZT -60
+assemble frontwheels wheelfrontleft wheelfrontright
+assemble wheels frontwheels backwheels
+#-- create the roof --\
+surface roof plastic.jpg 2\
+ -25 75 0  -20 75 0   20 75 0   25 75 0\
+ -25 75 0  -20 75 20  20 75 20  25 75 0\
+ -25 -75 0 -20 -75 20 20 -75 20 25 -75 0\
+ -25 -75 0 -20 -75 0  20 -75 0  25 -75 0
+create roof roof ZD 90 YD 90
+create roof roof ZT -30 YT 56
+#-- assemble the bus --\
+assemble bus side1 side2 front back wheels roof
+#assemble bus roof\
+create bus bus YD 35
+create bus bus XT 20
+view bus 0 0 0 0 0 0 0 0 0 0 1 10
