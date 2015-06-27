@@ -23,6 +23,11 @@
 *.lib
 
 # Executables
+midasview
 *.exe
 *.out
 *.app
+
+# QT Generated
+Makefile*
+moc_*

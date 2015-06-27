@@ -360,7 +360,11 @@ void MidasGL::resizeGL(int width, int height) {
 void MidasGL::mousePressEvent(QMouseEvent *event) {
 	mouseMoving = true;
 	lastPos = event->pos();
+#if QT_VERSION < 0x040600
 	if (event->buttons() & Qt::MiddleButton) {
+#else
+	if (event->buttons() & Qt::MidButton) {
+#endif
 		flightMode ^= true;
 		cout << "Flight mode: " << flightMode << endl;
 		if (flightMode) {

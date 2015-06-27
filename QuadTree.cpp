@@ -6,7 +6,7 @@
 // Description : Hello World in C, Ansi-style
 //============================================================================
 #include <iostream>
-#include "QuadTree.h"
+//#include "QuadTree.h"
 using namespace std;
 
 template <class T>

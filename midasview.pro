@@ -12,6 +12,7 @@ win32 {
 }
 !win32 {
 	INCLUDEPATH += /usr/include/boost \
+		/usr/include \
     .
 }
 
@@ -22,7 +23,7 @@ win32 {
 		-lboost_system-mgw49-mt-1_58
 }
 !win32 {
-	LIBS += -L/usr/lib \
+	LIBS += -L/usr/lib64 \
 		-lboost_regex \
 		-lboost_filesystem \
 		-lboost_system \
@@ -55,7 +56,7 @@ HEADERS += TexShape.h \
 SOURCES += TexShape.cpp \
     BezierCurve.cpp \
     BezierPatch.cpp \
-    QuadTree.cpp \
+    #QuadTree.cpp \
     Color256.cpp \
     Color.cpp \
     Frame.cpp \
